@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pig Game</title>
+</head>
+<body>
+    
+    <h1>Pig Game</h1>
+
+    <h3 id="player"></h3>
+    <h3 id="turn"></h3>
+
+    <ul id="scores"></ul>
+
+    <p id="error" style="color:red"></p>
+
+    <!-- <pre id="output">Connecting...</pre> -->
+
+    <button id="rollBtn">ROLL</button>
+    <button id="holdBtn">HOLD</button>
+
+    <script>
+        // const output= document.getElementById("output");
+
+        const playerE1= document.getElementById("player");
+        const turnE1= document.getElementById("turn");
+        const scoresE1= document.getElementById("scores");
+        const errorE1= document.getElementById("error");
+        const rollBtn= document.getElementById("rollBtn");
+        const holdBtn= document.getElementById("holdBtn");
+
+        let myPlayer = null;
+        
+        const ws= new WebSocket("ws://localhost:8765/room/TEST");
+
+        ws.onmessage = (event) =>{
+            const data=JSON.parse(event.data);
+            errorE1.textContent="";
+
+            if (data.type==="assign"){
+                myPlayer = data.player;
+                playerE1.textContent = `You are Player ${myPlayer}`;
+                return;
+            }
+            
+            if (data.type==="state"){
+                renderState(data);
+            }
+        };
+
+        function renderState(state){
+            scoresE1.innerHTML="";
+
+            state.players.forEach(p => {
+                const li = document.createElement('li');
+                li.textContent=`${p.name}: ${p.score}`;
+                scoresE1.appendChild(li);
+            });
+
+            turnE1.textContent=`Current turn: Player ${state.current_player}`;
+
+            const isMyTurn = myPlayer === state.current_player;
+            rollBtn.disabled = !isMyTurn;
+            holdBtn.disabled = !isMyTurn;
+        }
+
+        rollBtn.onclick = () => ws.send("ROLL");
+        holdBtn.onclick = () => ws.send("HOLD");
+
+    </script>
+
+</body>
+</html>
