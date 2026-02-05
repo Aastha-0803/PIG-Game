@@ -1,7 +1,7 @@
 import random
 
 class PigGame:
-    def __init__(self, players, target=100):
+    def __init__(self, players, target=10):
         self.players=players
         self.target=target
         self.scores=[0]*len(players)
@@ -58,4 +58,13 @@ class PigGame:
             "winner":self.winner,
             "last_dice":self.last_dice
         }
+    
+    def reset(self):
+        self.scores = [0] * len(self.players)
+        self.current_player_index = 0
+        self.game_over = False
+        self.winner = None
+        self.last_dice = None
+
+    
  

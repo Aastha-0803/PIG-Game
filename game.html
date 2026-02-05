@@ -9,6 +9,8 @@
     
     <h1>Pig Game</h1>
 
+    <h2 id="winner" style="color:green"></h2>
+
     <h3 id="player"></h3>
     <h3 id="turn"></h3>
 
@@ -34,6 +36,8 @@
 
     <button id="rollBtn">ROLL</button>
     <button id="holdBtn">HOLD</button>
+    <button id="restartBtn" onclick="restart()" style="display:none;">RESTART </button>
+
 
     <script>
         // const output= document.getElementById("output");
@@ -76,6 +80,10 @@
             }
         };
 
+        function restart() {
+            ws.send("RESTART");
+        }
+
         function renderState(state){
             scoresE1.innerHTML="";
 
@@ -95,6 +103,29 @@
                 document.getElementById("diceImg").src=
                 `dice/dice${state.last_dice}.png`;
             }
+
+            const winnerE1 = document.getElementById("winner");
+
+            if (state.game_over && state.winner){
+                winnerE1.textContent = `🎉 Player ${state.winner} wins!`;       
+            }
+            else{
+                winnerE1.textContent = "";
+            }
+
+            if (state.game_over) {
+                rollBtn.disabled=true;
+                holdBtn.disabled=true;
+                }
+
+            const restartBtn = document.getElementById("restartBtn");
+
+            if (state.game_over) {
+                restartBtn.style.display = "inline-block";
+            } else {
+                restartBtn.style.display = "none";
+            }
+
         }
 
         rollBtn.onclick = () => ws.send("ROLL");

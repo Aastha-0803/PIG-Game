@@ -71,6 +71,10 @@ async def handler(websocket):
                 state = game.roll()
             elif message == "HOLD":
                 state = game.hold()
+            elif message == "RESTART":
+                game.reset()
+                state = game.get_state()
+
             else:
                 continue
 
