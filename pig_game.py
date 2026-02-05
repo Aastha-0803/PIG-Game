@@ -8,7 +8,7 @@ class PigGame:
         self.current_player_index=0
         self.game_over=False
         self.winner=None
-        # self.last_dice=None
+        self.last_dice=None
 
     def roll_dice(self):
         min_value=1
@@ -22,7 +22,8 @@ class PigGame:
             return self.get_state()
 
         dice = self.roll_dice()
-        # self.last_dice = dice
+        self.last_dice = dice
+
         idx = self.current_player_index
 
         if dice == 1:
@@ -55,6 +56,6 @@ class PigGame:
             "current_player":self.players[self.current_player_index],
             "game_over": self.game_over,
             "winner":self.winner,
-            # "last_dice":self.last_dice
+            "last_dice":self.last_dice
         }
  

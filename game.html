@@ -21,7 +21,13 @@
     <ul id="scores"></ul>
 
     <p id="error" style="color:red"></p>
-    <p>Last Dice Roll: <span id="dice">-</span></p>
+
+    <p>Last Dice Roll:</p>
+
+    <div style="margin-top: 20px;">
+    <img id="diceImg" src="dice/dice1.png" width="80"/>
+    <div style="margin-top: 10px;">
+
 
 
     <!-- <pre id="output">Connecting...</pre> -->
@@ -84,6 +90,11 @@
             const isMyTurn = myPlayer === state.current_player;
             rollBtn.disabled = !isMyTurn;
             holdBtn.disabled = !isMyTurn;
+
+            if (state.last_dice){
+                document.getElementById("diceImg").src=
+                `dice/dice${state.last_dice}.png`;
+            }
         }
 
         rollBtn.onclick = () => ws.send("ROLL");
