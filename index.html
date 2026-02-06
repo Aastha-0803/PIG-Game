@@ -2,9 +2,23 @@
 <html>
 <head>
   <title>Pig Game</title>
+  <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-  <h1>Pig Game 🐷</h1>
+  <div class="game-container">
+  <h1 style="color: azure;">Pig Game 🐷</h1>
+  <div class="instructions">
+  <h3>How to Play 🎲</h3>
+    <ol>
+      <li>Create a room and share the link with a friend</li>
+      <li>Each player rolls the dice on their turn</li>
+      <li>If you roll a <b>1</b>, your score resets to <b>0</b> and turn passes</li>
+      <li>Click <b>HOLD</b> to save your score and pass the turn</li>
+      <li>First player to reach <b>100</b> wins</li>
+    </ol>
+  </div>
+
   <button onclick="createRoom()">Create Room</button>
 
   <script>
@@ -13,5 +27,6 @@
       window.location.href = `game.html?room=${roomId}`;
     }
   </script>
+  </div>
 </body>
 </html>

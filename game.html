@@ -4,39 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pig Game</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+
+    <div class="game-container">
     
-    <h1>Pig Game</h1>
+        <h1 style="color: azure;">Pig Game</h1>
 
-    <h2 id="winner" style="color:green"></h2>
+        <h2 id="winner" style="color:green"></h2>
 
-    <h3 id="player"></h3>
-    <h3 id="turn"></h3>
+        <h3 id="player" style="color: azure;"></h3>
+        <h3 id="turn" style="color: azure;"></h3>
 
-    <div>
-    <input id="roomLink" readonly />
-    <button onclick="copyLink()">Copy</button>
+        <div>
+        <input id="roomLink" readonly />
+        <button onclick="copyLink()">Copy</button>
+        </div>
+
+
+        <ul id="scores" style="color: azure; text-align: left;"></ul>
+
+        <p id="error" style="color:red"></p>
+
+        <p style="color: azure;">Last Dice Roll:</p>
+
+        <div style="margin-top: 20px;">
+        <img id="diceImg" src="dice/dice1.png" width="80"/>
+        <div style="margin-top: 10px;">
+
+
+
+        <!-- <pre id="output">Connecting...</pre> -->
+
+        <button id="rollBtn">ROLL</button>
+        <button id="holdBtn">HOLD</button>
+        <button id="restartBtn" onclick="restart()" style="display:none;">RESTART </button>
+
     </div>
-
-
-    <ul id="scores"></ul>
-
-    <p id="error" style="color:red"></p>
-
-    <p>Last Dice Roll:</p>
-
-    <div style="margin-top: 20px;">
-    <img id="diceImg" src="dice/dice1.png" width="80"/>
-    <div style="margin-top: 10px;">
-
-
-
-    <!-- <pre id="output">Connecting...</pre> -->
-
-    <button id="rollBtn">ROLL</button>
-    <button id="holdBtn">HOLD</button>
-    <button id="restartBtn" onclick="restart()" style="display:none;">RESTART </button>
 
 
     <script>

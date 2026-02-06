@@ -1,7 +1,7 @@
 import random
 
 class PigGame:
-    def __init__(self, players, target=10):
+    def __init__(self, players, target=100):
         self.players=players
         self.target=target
         self.scores=[0]*len(players)
